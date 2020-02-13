@@ -30,9 +30,9 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
         Point[] pts=new Point[]{new Point(140, 140),new Point(115, 115)};
         Point[] pts2=new Point[]{new Point(0, 1),new Point(100, 120)};
         Point[] pts3=new Point[]{new Point(160, 500),new Point(70, 70)};
-        Blueprint bp=new Blueprint("marcelo", "casita ",pts);
-        Blueprint bp2=new Blueprint("johan", "casota ",pts2);
-        Blueprint bp3=new Blueprint("marcelo", "casa ",pts3);
+        Blueprint bp=new Blueprint("marcelo", "casita",pts);
+        Blueprint bp2=new Blueprint("johan", "casota",pts2);
+        Blueprint bp3=new Blueprint("marcelo", "casa",pts3);
         blueprints.put(new Tuple<>(bp.getAuthor(),bp.getName()), bp);
         blueprints.put(new Tuple<>(bp2.getAuthor(),bp2.getName()), bp2);
         blueprints.put(new Tuple<>(bp3.getAuthor(),bp3.getName()), bp3);
@@ -71,6 +71,17 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
            aux.add(blueprints.get(bps));
         }
         return aux;
+    }
+
+    @Override
+    public Set<Blueprint> getBlueprintsByAuthorAndName(String author, String name) {
+        Set<Blueprint> bpsrta = new HashSet<Blueprint>();
+        for (Tuple<String,String> bps : blueprints.keySet()){
+            if (bps.o1.equals(author) && bps.o2.equals(name)){
+                bpsrta.add(blueprints.get(bps));
+            }
+        }
+        return bpsrta;
     }
 
 
